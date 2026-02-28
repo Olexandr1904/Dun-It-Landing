@@ -117,8 +117,9 @@ img {
     color: var(--color-text);
 }
 
-.nav-logo-icon {
-    font-size: 1.4rem;
+.nav-logo-img {
+    border-radius: 6px;
+    flex-shrink: 0;
 }
 
 .nav-links {
@@ -1071,8 +1072,8 @@ img {
     gap: 8px;
 }
 
-.footer-brand-name .nav-logo-icon {
-    font-size: 1.4rem;
+.footer-brand-name .nav-logo-img {
+    border-radius: 8px;
 }
 
 .footer-brand-name .nav-logo-text {
@@ -1113,6 +1114,17 @@ img {
 
 .footer-col a:hover {
     color: var(--color-primary);
+}
+
+.footer-support-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.footer-support-icon {
+    border-radius: 4px;
+    flex-shrink: 0;
 }
 
 .footer-bottom {
