@@ -1,1 +1,589 @@
-<h1>Coming soon</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dunit — Instant Shared Checklists in Telegram</title>
+    <meta name="description" content="Turn any Telegram message into a shared checklist. Type @dunitbot in any chat — no setup, no installs. Free for personal use, Premium from $1/month.">
+    <meta name="keywords" content="telegram checklist bot, shared checklist, todo list telegram, task list bot, grocery list telegram, team checklist">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dunit — Instant Shared Checklists in Telegram">
+    <meta property="og:description" content="Type @dunitbot in any Telegram chat to create interactive checklists. No setup needed. Works everywhere.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dunitbot.com">
+    <meta property="og:image" content="https://dunitbot.com/og-image.png">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dunit — Instant Shared Checklists in Telegram">
+    <meta name="twitter:description" content="Type @dunitbot in any chat to create shared checklists instantly.">
+    <meta name="twitter:image" content="https://dunitbot.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9989;</text></svg>">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://dunitbot.com">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Dunit — Checklist Bot",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Telegram",
+        "description": "Turn any Telegram message into a shared, interactive checklist. Works in any chat via inline mode.",
+        "url": "https://dunitbot.com",
+        "offers": [
+            {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD",
+                "description": "Free tier: 5 checklists/month, 10 items each"
+            },
+            {
+                "@type": "Offer",
+                "price": "1.00",
+                "priceCurrency": "USD",
+                "description": "Premium: Unlimited checklists, custom statuses, no watermark"
+            }
+        ],
+        "featureList": [
+            "Inline mode — works in any chat without setup",
+            "Collaborative — anyone can toggle items",
+            "56 languages supported",
+            "Premium statuses: In Progress, Cancelled",
+            "Who changed what — group chat attribution"
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="container nav-inner">
+            <a href="#" class="nav-logo">
+                <span class="nav-logo-icon">&#9989;</span>
+                <span class="nav-logo-text">Dunit</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#how-it-works">How It Works</a>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <a href="https://t.me/dunitbot" class="btn btn-nav" target="_blank" rel="noopener">Open in Telegram</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://t.me/dunitbot" class="btn btn-primary" target="_blank" rel="noopener">Open in Telegram</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="hero-content">
+                <div class="hero-badge">Free to use &middot; No app required</div>
+                <h1>Turn Any Message Into a <span class="gradient-text">Shared Checklist</span></h1>
+                <p class="hero-subtitle">Type <code>@dunitbot</code> in any Telegram chat. A collaborative checklist appears instantly. No setup, no installs, no adding bots to groups.</p>
+                <div class="hero-cta">
+                    <a href="https://t.me/dunitbot" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        Try Dunit Free
+                    </a>
+                    <a href="#how-it-works" class="btn btn-ghost btn-lg">See How It Works</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">56</span>
+                        <span class="hero-stat-label">Languages</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">4</span>
+                        <span class="hero-stat-label">Creation Methods</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">0s</span>
+                        <span class="hero-stat-label">Setup Time</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- Telegram Chat Mockup -->
+                <div class="chat-mockup">
+                    <div class="chat-header">
+                        <div class="chat-header-avatar">F</div>
+                        <div class="chat-header-info">
+                            <div class="chat-header-name">Family Chat</div>
+                            <div class="chat-header-status">Mom, Dad, you</div>
+                        </div>
+                    </div>
+                    <div class="chat-body">
+                        <div class="chat-msg chat-msg-other">
+                            <div class="chat-msg-name">Mom</div>
+                            <div class="chat-msg-text">We need groceries for dinner tonight!</div>
+                        </div>
+                        <div class="chat-msg chat-msg-self">
+                            <div class="chat-msg-text chat-msg-inline">
+                                <div class="chat-msg-inline-tag">via @dunitbot</div>
+                                <div class="chat-checklist">
+                                    <div class="chat-checklist-title">Grocery List</div>
+                                    <div class="chat-item chat-item-done">
+                                        <span class="chat-item-icon done">&#9989;</span>
+                                        <span class="chat-item-text checked">Chicken breast</span>
+                                        <span class="chat-item-who">(@mom)</span>
+                                    </div>
+                                    <div class="chat-item chat-item-done">
+                                        <span class="chat-item-icon done">&#9989;</span>
+                                        <span class="chat-item-text checked">Olive oil</span>
+                                        <span class="chat-item-who">(@dad)</span>
+                                    </div>
+                                    <div class="chat-item">
+                                        <span class="chat-item-icon">&#9745;&#65039;</span>
+                                        <span class="chat-item-text">Fresh basil</span>
+                                    </div>
+                                    <div class="chat-item">
+                                        <span class="chat-item-icon">&#9745;&#65039;</span>
+                                        <span class="chat-item-text">Pasta</span>
+                                    </div>
+                                    <div class="chat-item">
+                                        <span class="chat-item-icon">&#9745;&#65039;</span>
+                                        <span class="chat-item-text">Parmesan</span>
+                                    </div>
+                                    <div class="chat-checklist-progress">
+                                        <div class="chat-progress-bar">
+                                            <div class="chat-progress-fill" style="width: 40%"></div>
+                                        </div>
+                                        <span class="chat-progress-text">2 of 5 done</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-msg chat-msg-other">
+                            <div class="chat-msg-name">Dad</div>
+                            <div class="chat-msg-text">Got the olive oil! Checking it off now</div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <span class="chat-input-text">@dunitbot milk, eggs, bread...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section section-alt" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Works in 3 Seconds. Seriously.</h2>
+                <p>No app to install. No bot to add to your group. Just type and go.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Type in any chat</h3>
+                        <p>Type <code>@dunitbot</code> followed by your items, separated by commas or new lines.</p>
+                        <div class="step-example">
+                            <code>@dunitbot milk, eggs, bread, butter</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-arrow">&darr;</div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Pick your checklist</h3>
+                        <p>Telegram shows a preview. Tap it, and an interactive checklist appears in the chat.</p>
+                    </div>
+                </div>
+                <div class="step-arrow">&darr;</div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Everyone taps to check off</h3>
+                        <p>Anyone in the chat can tap items to toggle them. Progress updates in real time. Done.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- GIF placeholder -->
+            <div class="demo-placeholder" id="demo">
+                <div class="demo-placeholder-inner">
+                    <div class="demo-placeholder-icon">&#127909;</div>
+                    <p>Demo video coming soon</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="section" id="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>One Bot. Endless Lists.</h2>
+                <p>Wherever there's a group chat, there's a use for Dunit.</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case">
+                    <div class="use-case-icon">&#128722;</div>
+                    <h3>Grocery Shopping</h3>
+                    <p>Share a list in the family chat. Anyone buys something? They check it off. No more "did you get the milk?" messages.</p>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-icon">&#128188;</div>
+                    <h3>Team Tasks</h3>
+                    <p>Quick stand-up checklist, meeting action items, or sprint tasks. Everyone sees progress without leaving Telegram.</p>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-icon">&#9992;&#65039;</div>
+                    <h3>Travel Planning</h3>
+                    <p>Packing list for the trip. Share it with travel buddies. Never forget the sunscreen again.</p>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-icon">&#127881;</div>
+                    <h3>Events & Parties</h3>
+                    <p>Who's bringing what to the BBQ? Create a list, share it, let people claim items. Coordination solved.</p>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-icon">&#127968;</div>
+                    <h3>Household Chores</h3>
+                    <p>Roommates, couples, families. A shared chore list everyone can check off. No more arguments.</p>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-icon">&#127891;</div>
+                    <h3>Study Groups</h3>
+                    <p>Assignment tracker, reading list, exam prep checklist. Study together, track progress together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section section-alt" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Built for How You Actually Use Telegram</h2>
+                <p>Not another app to install. Not another tab to manage. Just Telegram, supercharged.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">&#9889;</div>
+                    <h3>Inline Mode</h3>
+                    <p>Type <code>@dunitbot</code> in <em>any</em> chat. Works in groups, channels, and private chats. No need to add the bot anywhere.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">&#128101;</div>
+                    <h3>Collaborative</h3>
+                    <p>Anyone in the chat can tap items to toggle them. Perfect for shared responsibilities where multiple people contribute.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">&#127760;</div>
+                    <h3>56 Languages</h3>
+                    <p>Auto-detects your Telegram language. Supports everything from English and Spanish to Hindi, Arabic, and Japanese.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">&#128202;</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Visual progress bar on every checklist. Get a celebration message when everything is checked off.</p>
+                </div>
+                <div class="feature feature-premium">
+                    <div class="feature-icon">&#128260;</div>
+                    <div class="feature-badge">Premium</div>
+                    <h3>Custom Statuses</h3>
+                    <p>Add In Progress and Cancelled states. 4-state toggle: TODO &rarr; In Progress &rarr; Done &rarr; Cancelled. Toggle each on/off in settings.</p>
+                </div>
+                <div class="feature feature-premium">
+                    <div class="feature-icon">&#128100;</div>
+                    <div class="feature-badge">Premium</div>
+                    <h3>Who Changed What</h3>
+                    <p>See who last modified each item in group chats. Clickable usernames that open a private chat. Full accountability.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">&#128172;</div>
+                    <h3>4 Creation Methods</h3>
+                    <p>Inline mode, <code>/todo</code> command with items, reply to any message with <code>/todo</code>, or convert your last message.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">&#127873;</div>
+                    <h3>Free Trial</h3>
+                    <p>Automatically get 7 days of Premium after your second checklist. No card required. No strings attached.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Free for personal use. Premium for power users. Pricing adapts to your region.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <h3>Free</h3>
+                        <div class="pricing-price">
+                            <span class="pricing-amount">$0</span>
+                            <span class="pricing-period">forever</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <span class="pricing-check">&#10003;</span>
+                            5 checklists per month
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="pricing-check">&#10003;</span>
+                            10 items per checklist
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="pricing-check">&#10003;</span>
+                            Inline mode in any chat
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="pricing-check">&#10003;</span>
+                            Collaborative toggling
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="pricing-check">&#10003;</span>
+                            Progress tracking
+                        </li>
+                        <li class="pricing-feature pricing-feature-disabled">
+                            <span class="pricing-x">&times;</span>
+                            Custom statuses
+                        </li>
+                        <li class="pricing-feature pricing-feature-disabled">
+                            <span class="pricing-x">&times;</span>
+                            "Who changed what"
+                        </li>
+                    </ul>
+                    <a href="https://t.me/dunitbot" class="btn btn-outline btn-block" target="_blank" rel="noopener">Get Started Free</a>
+                </div>
+                <div class="pricing-card pricing-card-featured">
+                    <div class="pricing-card-popular">Most Popular</div>
+                    <div class="pricing-card-header">
+                        <h3>Premium</h3>
+                        <div class="pricing-price">
+                            <span class="pricing-from">from</span>
+                            <span class="pricing-amount">$1</span>
+                            <span class="pricing-period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <span class="pricing-check featured">&#10003;</span>
+                            <strong>Unlimited</strong> checklists
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="pricing-check featured">&#10003;</span>
+                            <strong>Unlimited</strong> items per checklist
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="pricing-check featured">&#10003;</span>
+                            Inline mode in any chat
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="pricing-check featured">&#10003;</span>
+                            Collaborative toggling
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="pricing-check featured">&#10003;</span>
+                            Progress tracking
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="pricing-check featured">&#10003;</span>
+                            Custom statuses (In Progress, Cancelled)
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="pricing-check featured">&#10003;</span>
+                            "Who changed what" in groups
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="pricing-check featured">&#10003;</span>
+                            No watermark on checklists
+                        </li>
+                    </ul>
+                    <a href="https://t.me/dunitbot" class="btn btn-primary btn-block" target="_blank" rel="noopener">Start 7-Day Free Trial</a>
+                    <div class="pricing-note">Trial starts automatically. No payment needed.</div>
+                </div>
+            </div>
+            <div class="pricing-tiers">
+                <h4>Regional pricing &mdash; pay what's fair for your country</h4>
+                <div class="pricing-tiers-table">
+                    <div class="pricing-tier">
+                        <span class="pricing-tier-label">Tier 1</span>
+                        <span class="pricing-tier-countries">DE, FR, JP, NL, SE, KR...</span>
+                        <span class="pricing-tier-price">$3/mo &middot; $21/yr &middot; $60 lifetime</span>
+                    </div>
+                    <div class="pricing-tier">
+                        <span class="pricing-tier-label">Tier 2</span>
+                        <span class="pricing-tier-countries">EN, ES, IT, PT, TR, PL...</span>
+                        <span class="pricing-tier-price">$2/mo &middot; $14/yr &middot; $40 lifetime</span>
+                    </div>
+                    <div class="pricing-tier">
+                        <span class="pricing-tier-label">Tier 3</span>
+                        <span class="pricing-tier-countries">RU, UK, HI, ID, VI, TH...</span>
+                        <span class="pricing-tier-price">$1/mo &middot; $7/yr &middot; $20 lifetime</span>
+                    </div>
+                </div>
+                <p class="pricing-tiers-note">Yearly plans save 5 months. Lifetime means forever. Paid via Telegram Stars.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="referral-banner">
+                <div class="referral-content">
+                    <h2>Invite Friends, Earn Premium</h2>
+                    <p>Share your personal referral link. When 2 friends try Dunit, you get <strong>7 days of Premium free</strong>. Invite 4 friends? That's 14 days. Use the <code>/invite</code> command in the bot to get your link.</p>
+                </div>
+                <a href="https://t.me/dunitbot" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Get Your Referral Link</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Do I need to add the bot to my group?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>No.</strong> That's the beauty of inline mode. Type <code>@dunitbot</code> in any chat &mdash; group, channel, or private conversation &mdash; and it works instantly. No permissions, no setup, no admin approval needed.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Is it really free?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. The free tier gives you 5 checklists per month with 10 items each. For most personal use, that's enough. If you need more, Premium starts at $1/month depending on your region.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How do I create a checklist?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Four ways: (1) Type <code>@dunitbot item1, item2, item3</code> in any chat. (2) Send <code>/todo item1, item2</code> in a chat where the bot is present. (3) Reply to any message with <code>/todo</code> to convert it. (4) Send a message, then send <code>/todo</code> to convert your last message.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Can anyone in the group check items off?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! That's the point. Any group member can tap any item to toggle its status. With Premium, the checklist even shows who changed each item, so you always know who did what.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How does the free trial work?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>After you create your second checklist, you automatically get 7 days of full Premium. No credit card, no payment method, no catch. It just activates. When it expires, you go back to the free tier.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How do I pay?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Through Telegram Stars &mdash; Telegram's built-in digital currency. Type <code>/upgrade</code> in the bot to see pricing for your region. Payment is processed entirely within Telegram. No external payment forms.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What languages are supported?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>56 languages, including English, Spanish, French, German, Russian, Ukrainian, Hindi, Arabic, Japanese, Chinese, Portuguese, Turkish, Indonesian, and many more. The bot auto-detects your Telegram language setting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section section-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Your Next Checklist Is One Message Away</h2>
+                <p>Open Telegram. Type <code>@dunitbot</code>. That's it.</p>
+                <a href="https://t.me/dunitbot" class="btn btn-white btn-lg" target="_blank" rel="noopener">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Open Dunit in Telegram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="nav-logo-icon">&#9989;</span>
+                <span class="nav-logo-text">Dunit</span>
+                <p class="footer-tagline">Instant shared checklists in Telegram.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="https://t.me/dunitbot" target="_blank" rel="noopener">Open Bot</a>
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="https://t.me/dunItSupport" target="_blank" rel="noopener">Contact Support</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Made with &#10084;&#65039; in Ukraine &#127482;&#127462;</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
