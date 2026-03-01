@@ -5,6 +5,38 @@
 (function () {
     'use strict';
 
+    // --- Theme toggle ---
+    var THEME_KEY = 'dunit-theme';
+    var themeToggle = document.getElementById('themeToggle');
+    var htmlEl = document.documentElement;
+
+    function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function applyTheme(theme) {
+        htmlEl.setAttribute('data-theme', theme);
+    }
+
+    // On load: use saved preference, otherwise follow system
+    var savedTheme = localStorage.getItem(THEME_KEY);
+    applyTheme(savedTheme || getSystemTheme());
+
+    // Toggle button click
+    themeToggle.addEventListener('click', function () {
+        var current = htmlEl.getAttribute('data-theme');
+        var next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        localStorage.setItem(THEME_KEY, next);
+    });
+
+    // Listen for system theme changes (only if user hasn't manually chosen)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+        if (!localStorage.getItem(THEME_KEY)) {
+            applyTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+
     // --- Navigation scroll effect ---
     const nav = document.getElementById('nav');
 

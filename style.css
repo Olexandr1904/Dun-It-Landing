@@ -1172,157 +1172,199 @@ img {
 }
 
 /* ============================================
-   Dark Mode (system preference)
+   Theme Toggle & Nav Actions
    ============================================ */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-primary: #3fb8f2;
-        --color-primary-dark: #5ac4f5;
-        --color-primary-light: rgba(42, 171, 238, 0.15);
-        --color-text: #e8eaed;
-        --color-text-secondary: #9aa0a6;
-        --color-bg: #1a1a2e;
-        --color-bg-alt: #16162a;
-        --color-border: #2d2d4a;
-        --color-success: #34c759;
-        --color-premium: #ff9f0a;
-        --shadow-sm: 0 1px 3px rgba(0,0,0,0.25);
-        --shadow-md: 0 4px 16px rgba(0,0,0,0.35);
-        --shadow-lg: 0 8px 32px rgba(0,0,0,0.45);
-        --shadow-xl: 0 16px 48px rgba(0,0,0,0.5);
-        color-scheme: dark;
-    }
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
-    /* Navigation */
-    .nav {
-        background: rgba(26, 26, 46, 0.92);
-    }
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-alt);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all var(--transition);
+    flex-shrink: 0;
+}
 
-    /* Buttons */
-    .btn-outline {
-        color: var(--color-text);
-        border-color: var(--color-border);
-    }
+.theme-toggle:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    background: var(--color-primary-light);
+}
 
-    .btn-outline:hover {
-        background: var(--color-primary-light);
-    }
+/* Show sun in dark mode, moon in light mode */
+.theme-icon-dark {
+    display: none;
+}
 
-    .btn-white {
-        background: rgba(255, 255, 255, 0.12);
-        color: #fff;
-        border-color: rgba(255, 255, 255, 0.2);
-    }
+html[data-theme="dark"] .theme-icon-light {
+    display: none;
+}
 
-    .btn-white:hover {
-        background: rgba(255, 255, 255, 0.2);
-        color: #fff;
-        box-shadow: 0 4px 16px rgba(255,255,255,0.1);
-    }
+html[data-theme="dark"] .theme-icon-dark {
+    display: block;
+}
 
-    /* Chat Mockup */
-    .chat-mockup {
-        background: #1e1e32;
-        border-color: var(--color-border);
-    }
+/* ============================================
+   Dark Mode
+   ============================================ */
+html[data-theme="dark"] {
+    color-scheme: dark;
 
-    .chat-header {
-        background: #1e88c7;
-    }
+    --color-primary: #3fb8f2;
+    --color-primary-dark: #5ac4f5;
+    --color-primary-light: rgba(42, 171, 238, 0.15);
+    --color-text: #e8eaed;
+    --color-text-secondary: #9aa0a6;
+    --color-bg: #1a1a2e;
+    --color-bg-alt: #16162a;
+    --color-border: #2d2d4a;
+    --color-success: #34c759;
+    --color-premium: #ff9f0a;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.25);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.35);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.45);
+    --shadow-xl: 0 16px 48px rgba(0,0,0,0.5);
+}
 
-    .chat-body {
-        background: #0e0e1e;
-    }
+/* Navigation */
+html[data-theme="dark"] .nav {
+    background: rgba(26, 26, 46, 0.92);
+}
 
-    .chat-msg-text {
-        background: #2a2a44;
-        color: var(--color-text);
-        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    }
+/* Buttons */
+html[data-theme="dark"] .btn-outline {
+    color: var(--color-text);
+    border-color: var(--color-border);
+}
 
-    .chat-msg-self .chat-msg-text {
-        background: #1a3a28;
-    }
+html[data-theme="dark"] .btn-outline:hover {
+    background: var(--color-primary-light);
+}
 
-    .chat-msg-inline-tag {
-        background: rgba(255,255,255,0.06);
-        color: var(--color-text-secondary);
-    }
+html[data-theme="dark"] .btn-white {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+}
 
-    .chat-checklist-title {
-        color: var(--color-text);
-    }
+html[data-theme="dark"] .btn-white:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(255,255,255,0.1);
+}
 
-    .chat-item {
-        color: var(--color-text);
-    }
+/* Chat Mockup */
+html[data-theme="dark"] .chat-mockup {
+    background: #1e1e32;
+    border-color: var(--color-border);
+}
 
-    .chat-progress-bar {
-        background: #3a3a54;
-    }
+html[data-theme="dark"] .chat-header {
+    background: #1e88c7;
+}
 
-    .chat-input {
-        background: #16162a;
-        border-top-color: var(--color-border);
-    }
+html[data-theme="dark"] .chat-body {
+    background: #0e0e1e;
+}
 
-    .chat-input-text {
-        color: #666;
-    }
+html[data-theme="dark"] .chat-msg-text {
+    background: #2a2a44;
+    color: var(--color-text);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
 
-    /* Step example */
-    .step-example code {
-        color: var(--color-primary);
-    }
+html[data-theme="dark"] .chat-msg-self .chat-msg-text {
+    background: #1a3a28;
+}
 
-    /* Feature premium card */
-    .feature-premium {
-        border-color: rgba(255, 149, 0, 0.3);
-        background: linear-gradient(180deg, #2a2218 0%, #1a1a2e 100%);
-    }
+html[data-theme="dark"] .chat-msg-inline-tag {
+    background: rgba(255,255,255,0.06);
+    color: var(--color-text-secondary);
+}
 
-    /* Pricing */
-    .pricing-card-featured {
-        box-shadow: 0 8px 32px rgba(42, 171, 238, 0.2);
-    }
+html[data-theme="dark"] .chat-checklist-title {
+    color: var(--color-text);
+}
 
-    .pricing-x {
-        color: #555;
-    }
+html[data-theme="dark"] .chat-item {
+    color: var(--color-text);
+}
 
-    /* Referral banner */
-    .referral-banner {
-        background: linear-gradient(135deg, rgba(42, 171, 238, 0.12) 0%, rgba(99, 102, 241, 0.12) 100%);
-        border-color: var(--color-border);
-    }
+html[data-theme="dark"] .chat-progress-bar {
+    background: #3a3a54;
+}
 
-    /* CTA section — keep gradient but adjust slightly */
-    .section-cta {
-        background: linear-gradient(135deg, #1e6fa0 0%, #4a4cc7 100%);
-    }
+html[data-theme="dark"] .chat-input {
+    background: #16162a;
+    border-top-color: var(--color-border);
+}
 
-    .cta-content code {
-        background: rgba(255,255,255,0.15);
-    }
+html[data-theme="dark"] .chat-input-text {
+    color: #666;
+}
 
-    /* Code inline */
-    code {
-        background: var(--color-primary-light);
-        color: var(--color-primary);
-    }
+/* Step example */
+html[data-theme="dark"] .step-example code {
+    color: var(--color-primary);
+}
 
-    /* Logo images — lighten slightly for dark bg */
-    .nav-logo-img,
-    .footer-support-icon {
-        filter: brightness(1.1);
-    }
+/* Feature premium card */
+html[data-theme="dark"] .feature-premium {
+    border-color: rgba(255, 149, 0, 0.3);
+    background: linear-gradient(180deg, #2a2218 0%, #1a1a2e 100%);
+}
 
-    /* Gradient text — slightly brighter for dark */
-    .gradient-text {
-        background: linear-gradient(135deg, var(--color-primary), #818cf8);
-        -webkit-background-clip: text;
-        background-clip: text;
-    }
+/* Pricing */
+html[data-theme="dark"] .pricing-card-featured {
+    box-shadow: 0 8px 32px rgba(42, 171, 238, 0.2);
+}
+
+html[data-theme="dark"] .pricing-x {
+    color: #555;
+}
+
+/* Referral banner */
+html[data-theme="dark"] .referral-banner {
+    background: linear-gradient(135deg, rgba(42, 171, 238, 0.12) 0%, rgba(99, 102, 241, 0.12) 100%);
+    border-color: var(--color-border);
+}
+
+/* CTA section */
+html[data-theme="dark"] .section-cta {
+    background: linear-gradient(135deg, #1e6fa0 0%, #4a4cc7 100%);
+}
+
+html[data-theme="dark"] .cta-content code {
+    background: rgba(255,255,255,0.15);
+}
+
+/* Code inline */
+html[data-theme="dark"] code {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+/* Logo images — lighten slightly for dark bg */
+html[data-theme="dark"] .nav-logo-img,
+html[data-theme="dark"] .footer-support-icon {
+    filter: brightness(1.1);
+}
+
+/* Gradient text — slightly brighter for dark */
+html[data-theme="dark"] .gradient-text {
+    background: linear-gradient(135deg, var(--color-primary), #818cf8);
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 /* ============================================
@@ -1339,8 +1381,11 @@ img {
 }
 
 @media (max-width: 768px) {
-    .nav-links,
-    .btn-nav {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-actions .btn-nav {
         display: none;
     }
 
