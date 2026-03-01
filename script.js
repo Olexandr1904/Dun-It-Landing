@@ -14,8 +14,14 @@
         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 
+    function updateToggleIcon() {
+        var isDark = htmlEl.getAttribute('data-theme') === 'dark';
+        themeToggle.textContent = isDark ? '\u2600\uFE0F' : '\uD83C\uDF19';
+    }
+
     function applyTheme(theme) {
         htmlEl.setAttribute('data-theme', theme);
+        updateToggleIcon();
     }
 
     // On load: use saved preference, otherwise follow system
