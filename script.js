@@ -35,17 +35,18 @@
             session_id: sessionId,
             referrer: document.referrer || ''
         });
-        try {
-            var blob = new Blob([payload], { type: 'application/json' });
-            navigator.sendBeacon(TRACK_API, blob);
-        } catch (e) {
-            fetch(TRACK_API, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: payload,
-                keepalive: true
-            }).catch(function () {});
-        }
+        fetch(TRACK_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payload,
+            mode: 'cors'
+        }).catch(function () {
+            // Fallback to sendBeacon
+            try {
+                var blob = new Blob([payload], { type: 'application/json' });
+                navigator.sendBeacon(TRACK_API, blob);
+            } catch (e) {}
+        });
     }
 
     // Track page view (once per session)
