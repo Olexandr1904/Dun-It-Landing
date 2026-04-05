@@ -5,6 +5,62 @@
 (function () {
     'use strict';
 
+    // --- Acquisition source tracking & analytics ---
+    var TRACK_API = 'https://telegram-checklist-bot.fly.dev/api/landing/track';
+    var BOT_BASE = 'https://t.me/dunitbot';
+
+    // Get source from URL param (e.g., ?src=facebook)
+    var urlParams = new URLSearchParams(window.location.search);
+    var source = urlParams.get('src') || 'direct';
+
+    // Generate a session ID for this visit (persists across page reloads in same tab)
+    var sessionId = sessionStorage.getItem('dunit-sid');
+    if (!sessionId) {
+        sessionId = crypto.randomUUID ? crypto.randomUUID() : (Math.random().toString(36).slice(2) + Date.now().toString(36));
+        sessionStorage.setItem('dunit-sid', sessionId);
+    }
+
+    // Rewrite all bot links to include source
+    if (source !== 'direct') {
+        document.querySelectorAll('a[href="' + BOT_BASE + '"]').forEach(function (link) {
+            link.href = BOT_BASE + '?start=src_' + encodeURIComponent(source);
+        });
+    }
+
+    // Send tracking event (fire-and-forget)
+    function trackEvent(event) {
+        var payload = JSON.stringify({
+            event: event,
+            source: source,
+            session_id: sessionId,
+            referrer: document.referrer || ''
+        });
+        try {
+            var blob = new Blob([payload], { type: 'application/json' });
+            navigator.sendBeacon(TRACK_API, blob);
+        } catch (e) {
+            fetch(TRACK_API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: payload,
+                keepalive: true
+            }).catch(function () {});
+        }
+    }
+
+    // Track page view (once per session)
+    if (!sessionStorage.getItem('dunit-pv')) {
+        trackEvent('page_view');
+        sessionStorage.setItem('dunit-pv', '1');
+    }
+
+    // Track bot link clicks
+    document.querySelectorAll('a[href^="' + BOT_BASE + '"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+            trackEvent('bot_click');
+        });
+    });
+
     // --- Theme toggle ---
     var THEME_KEY = 'dunit-theme';
     var themeToggle = document.getElementById('themeToggle');
